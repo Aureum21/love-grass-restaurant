@@ -1,0 +1,618 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import faqData from '../data/faq.json';
+import TractorTopView from '../components/journey/TractorTopView.astro';
+
+/* FAQ Page Schema */
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+
+/* Breadcrumb for about page */
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.lovegrassdubai.com/" },
+    { "@type": "ListItem", "position": 2, "name": "About Us", "item": "https://www.lovegrassdubai.com/about" }
+  ]
+};
+
+/* Teff Facts (SVGs replaced emojis) */
+const getIcon = (paths) => `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+
+const teffFacts = [
+  { icon: getIcon('<circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'), title: "Ancient Grain", desc: "One of the very first plants cultivated by humans, beginning in the east coast of Africa as early as 4000 BC." },
+  { icon: getIcon('<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>'), title: "High Protein & Fiber", desc: "Teff flour is 12.2% fiber and contains all amino acids humans need, making it a perfect plant-based source of protein available." },
+  { icon: getIcon('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'), title: "High Mineral Content", desc: "Rich in iron and manganese, and also contains phosphorous, magnesium, calcium, zinc, sodium and potassium." },
+  { icon: getIcon('<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>'), title: "Naturally Gluten Free", desc: "Safe for people with celiac disease and gentle on digestive systems." },
+  { icon: getIcon('<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'), title: "Blood Sugar Control", desc: "Has a lower glycemic index (GI) than wheat products, helping to regulate insulin and blood sugar fluctuations." },
+  { icon: getIcon('<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>'), title: "Culinary Versatility", desc: "Apart from its use in injera, you can make bread, biscuits, pancakes, and muffins." },
+];
+---
+
+<BaseLayout
+  title="About Us"
+  description="Learn about Love Grass Restaurant's journey, the story behind our authentic Ethiopian cuisine, discover teff grain benefits, and find answers to common questions."
+  schema={[faqSchema, breadcrumbSchema]}
+>
+
+  <!-- ========== ABOUT HERO ========== -->
+  <section class="about-hero" aria-label="About Love Grass Restaurant">
+    <div class="about-hero__overlay"></div>
+    <div class="about-hero__content container">
+      <p class="section-label hero-animate" style="color: var(--color-accent-light);">Our Story</p>
+      <h1 class="about-hero__title hero-animate hero-animate--delay-1">About Love Grass</h1>
+      <p class="about-hero__subtitle hero-animate hero-animate--delay-2">
+        A journey from the Ethiopian Highlands to the heart of Dubai
+      </p>
+    </div>
+  </section>
+
+  <!-- ========== OUR STORY ========== -->
+  <section class="section story" id="story" aria-labelledby="story-title">
+    <div class="container container--narrow">
+      <div data-reveal>
+        <p class="section-label">The Beginning</p>
+        <h2 class="section-title" id="story-title">From Ethiopia, With Love</h2>
+        <hr class="divider" />
+      </div>
+
+      <div class="story-content" data-reveal>
+        <p>
+          Inspired by the traditional African “love grass” <em>Eragrostis tef</em>, that has supported communities for over 5,000 years, our restaurant serves up the soulful and vibrant flavors of Ethiopia to the heart of the UAE.
+        </p>
+        <p>
+          What makes us stand out is our commitment to the craft of real Injera. Modern shortcuts may combine grains, but our kitchen bakes 100% pure Teff Injera fresh daily. Our signature sourdough flatbread is naturally gluten free, nutrient dense and preservative free — the perfect canvas for our rich culinary heritage.
+        </p>
+        <p>
+          Our menu celebrates diversity and inclusion, offering something for every palate. From traditional meat stews like Doro Wot and Tibs, to our vegan fasting platters (Beyaynetu), we prepare each dish with clean, wholesome ingredients and recipes passed down through generations.
+        </p>
+        <p>
+          At Love Grass, our love for Teff goes beyond our signature Injera and savory dishes. We also make innovative fine desserts with Teff as the main ingredient, giving a modern twist to this ancient Ethiopian grain. Our desserts include <strong>Teff Cake</strong> and <strong>Teff Berry Delight</strong> (a fluffy Teff based cake with colorful fruits that give a perfectly balanced and refreshing sweetness), <strong>Teff Cake Slice</strong> (a light and fluffy Teff cake with a hint of cinnamon), and <strong>Love Bite</strong> (a light and fluffy Teff cake with a hint of cinnamon and vanilla).
+        </p>
+        <p>
+          Love Grass is more than a meal, it’s an invitation to connect. Our guests gather around a beautiful colorful shared platter to experience the ancient tradition of communal eating where food is broken together, stories are shared and every guest is treated like family. Come into our home in Abu Hail and experience a cleaner, healthier and truly authentic taste of Ethiopia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BLOG PREVIEW ========== -->
+  <section class="section blog-preview" id="blog" aria-labelledby="blog-title">
+    <div class="container">
+      <div class="text-center" data-reveal>
+        <p class="section-label">From Our Kitchen</p>
+        <h2 class="section-title" id="blog-title">Stories & Insights</h2>
+        <hr class="divider" style="margin-inline: auto;" />
+      </div>
+
+      <div class="blog-grid">
+        <a href="/journey-of-teff" class="blog-card card" data-reveal data-reveal-delay="1" style="text-decoration: none; color: inherit; display: block;">
+          <div class="blog-card__img">
+            <div class="blog-card__placeholder" style="display: flex; align-items: center; justify-content: center;">
+              <div style="width: 80px;" transition:name="journey-tractor">
+                <TractorTopView />
+              </div>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <span class="blog-card__tag">Experience</span>
+            <h3 class="blog-card__title">The Journey of Teff</h3>
+            <p class="blog-card__excerpt">
+              Follow the ancient story of Ethiopia's most sacred grain — from highland soils to the perfect injera on your plate.
+            </p>
+            <span class="blog-card__date" style="color: var(--color-primary); font-weight: 600;">Experience the Journey &rarr;</span>
+          </div>
+        </a>
+
+        <a href="/art-of-making-injera" class="blog-card card" data-reveal data-reveal-delay="2" style="text-decoration: none; color: inherit; display: block;">
+          <div class="blog-card__img">
+            <div class="blog-card__placeholder">
+              <span>🌾</span>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <span class="blog-card__tag">Tradition</span>
+            <h3 class="blog-card__title">The Art of Making Injera</h3>
+            <p class="blog-card__excerpt">
+              Discover the traditional fermentation process behind Ethiopia's iconic flatbread and how pure teff flour is crafted into spongy injera...
+            </p>
+            <span class="blog-card__date" style="color: var(--color-primary); font-weight: 600;">Learn the Craft &rarr;</span>
+          </div>
+        </a>
+
+        <a href="/ethiopian-coffee-ceremony" class="blog-card card" data-reveal data-reveal-delay="3" style="text-decoration: none; color: inherit; display: block;">
+          <div class="blog-card__img">
+            <div class="blog-card__placeholder">
+              <span>☕</span>
+            </div>
+          </div>
+          <div class="blog-card__body">
+            <span class="blog-card__tag">Heritage</span>
+            <h3 class="blog-card__title">The Ethiopian Coffee Ceremony</h3>
+            <p class="blog-card__excerpt">
+              From washing green beans and roasting over charcoal to three rounds of Buna (Abol, Tona, Baraka) — experience Ethiopia's ritual of connection...
+            </p>
+            <span class="blog-card__date" style="color: var(--color-primary); font-weight: 600;">Explore the Ritual &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TEFF FACTS ========== -->
+  <section class="section teff-facts" id="teff" aria-labelledby="teff-title">
+    <div class="container">
+      <div class="text-center" data-reveal>
+        <p class="section-label">The Ancient Grain</p>
+        <h2 class="section-title" id="teff-title">Why Teff Is Special</h2>
+        <hr class="divider" style="margin-inline: auto;" />
+        <p class="section-subtitle" style="margin-inline: auto;">
+          The tiny grain behind our injera is one of the world's most nutritious foods
+        </p>
+      </div>
+
+      <div class="teff-grid">
+        {teffFacts.map((fact, i) => (
+          <div class="teff-card" data-reveal data-reveal-delay={String(Math.min(i + 1, 5))}>
+            <span class="teff-card__icon" set:html={fact.icon} />
+            <div class="teff-card__content">
+              <h3 class="teff-card__title">{fact.title}</h3>
+              <p class="teff-card__desc">{fact.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container container--narrow">
+      <div class="text-center" data-reveal>
+        <p class="section-label">Got Questions?</p>
+        <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
+        <hr class="divider" style="margin-inline: auto;" />
+      </div>
+
+      <div class="faq-list" data-reveal>
+        {faqData.map(faq => (
+          <details class="faq-item">
+            <summary class="faq-item__question">
+              <span>{faq.question}</span>
+              <svg class="faq-item__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </summary>
+            <div class="faq-item__answer">
+              <p>{faq.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="section cta-section" aria-label="Visit us">
+    <div class="container text-center" data-reveal>
+      <h2 class="cta-section__title">Ready to Taste Ethiopia?</h2>
+      <p class="cta-section__subtitle">
+        Visit Love Grass Restaurant in Dubai and experience the warmth of Ethiopian hospitality
+      </p>
+      <a href="/menu" class="btn btn--accent btn--lg pulse">
+        Explore Our Menu
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  /* ========== ABOUT HERO ========== */
+  .about-hero {
+    position: relative;
+    padding-block: calc(var(--header-height) + var(--space-4)) var(--space-5);
+    min-height: calc(100px + var(--header-height));
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  }
+
+  .about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(212, 148, 58, 0.12), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05), transparent 40%);
+  }
+
+  .about-hero__content {
+    position: relative;
+    z-index: 1;
+    color: var(--color-text-inverse);
+  }
+
+  .about-hero__title {
+    font-size: var(--text-5xl);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--space-3);
+  }
+
+  .about-hero__subtitle {
+    font-size: var(--text-lg);
+    opacity: 0.85;
+    max-width: 50ch;
+  }
+
+  /* ========== STORY ========== */
+  .story-content {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .story-content p {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--color-text-muted);
+  }
+
+  .story-content em {
+    color: var(--color-primary);
+    font-style: italic;
+    font-family: var(--font-accent);
+  }
+
+  /* ========== TEFF FACTS (Dark Glassmorphism) ========== */
+  .teff-facts {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    color: var(--color-text-inverse);
+  }
+
+  .teff-facts .section-label {
+    color: var(--color-accent-light);
+  }
+
+  .teff-facts .section-title,
+  .teff-facts .section-subtitle {
+    color: var(--color-text-inverse);
+  }
+
+  .teff-facts .divider {
+    background-color: var(--color-accent-light);
+    opacity: 0.5;
+  }
+
+  .teff-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 600px) {
+    .teff-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .teff-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .teff-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    background: rgba(0, 0, 0, 0.2) !important; /* Force dark translucent background */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    transition: 
+      transform var(--duration-normal) var(--ease-out),
+      border-color var(--duration-normal) var(--ease-out),
+      box-shadow var(--duration-normal) var(--ease-out),
+      background var(--duration-normal) var(--ease-out);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports ((animation-timeline: view()) and (animation-range: entry)) {
+      @keyframes focus-card {
+        0%, 100% {
+          opacity: 0.35;
+          transform: scale(0.95);
+          background: rgba(0, 0, 0, 0.2) !important;
+          border-color: rgba(255, 255, 255, 0.08);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        35%, 65% {
+          opacity: 1;
+          transform: scale(1) translateY(-6px);
+          background: rgba(0, 0, 0, 0.35) !important;
+          border-color: rgba(232, 184, 109, 0.4);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 15px rgba(232, 184, 109, 0.1);
+        }
+      }
+      
+      @keyframes focus-icon {
+        0%, 100% { transform: scale(1); }
+        35%, 65% { transform: scale(1.15); }
+      }
+
+      .teff-card {
+        view-timeline: --card-tl;
+        animation: focus-card linear both;
+        animation-timeline: --card-tl;
+      }
+      
+      .teff-card__icon {
+        animation: focus-icon linear both;
+        animation-timeline: --card-tl;
+      }
+    }
+  }
+
+  @media (min-width: 600px) {
+    .teff-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: none !important; /* Disable scroll focus on desktop */
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+
+  .teff-card:hover {
+    transform: translateY(-6px);
+    background: rgba(0, 0, 0, 0.35) !important;
+    border-color: rgba(232, 184, 109, 0.4); /* var(--color-accent-light) */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 15px rgba(232, 184, 109, 0.1);
+  }
+
+  .teff-card__icon {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-accent-light);
+    background: rgba(232, 184, 109, 0.1); /* Subtle gold background for mobile */
+    padding: var(--space-3);
+    border-radius: 50%;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  @media (min-width: 600px) {
+    .teff-card__icon {
+      background: transparent;
+      padding: 0;
+      margin-bottom: var(--space-3);
+    }
+  }
+
+  .teff-card:hover .teff-card__icon {
+    transform: scale(1.15);
+  }
+
+  .teff-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+    color: var(--color-text-inverse);
+  }
+
+  .teff-card__desc {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+  }
+
+  /* ========== FAQ ========== */
+  .faq {
+    background-color: var(--color-surface);
+  }
+
+  .faq-list {
+    margin-top: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .faq-item {
+    background-color: var(--color-surface-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-primary-100);
+  }
+
+  .faq-item__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--text-base);
+    list-style: none;
+  }
+
+  .faq-item__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item__question::marker {
+    content: '';
+  }
+
+  .faq-item__chevron {
+    flex-shrink: 0;
+    transition: transform var(--duration-normal) var(--ease-out);
+    color: var(--color-text-muted);
+  }
+
+  .faq-item[open] .faq-item__chevron {
+    transform: rotate(180deg);
+    color: var(--color-primary);
+  }
+
+  .faq-item__answer {
+    padding: 0 var(--space-4) var(--space-4);
+  }
+
+  .faq-item__answer p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  /* ========== BLOG PREVIEW ========== */
+  .blog-preview {
+    background-color: var(--color-surface-alt);
+  }
+
+  .blog-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+    padding-bottom: var(--space-4);
+    /* Full bleed pull-out */
+    padding-inline: var(--space-4);
+    margin-inline: calc(var(--space-4) * -1);
+    scrollbar-width: none;
+  }
+  
+  .blog-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .blog-card {
+    flex: 0 0 82%;
+    scroll-snap-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      overflow-x: visible;
+      padding-inline: 0;
+      margin-inline: 0;
+    }
+    
+    .blog-card {
+      flex: auto;
+      scroll-snap-align: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .blog-card__img {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .blog-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    font-size: 3rem;
+  }
+
+  .blog-card__body {
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .blog-card__tag {
+    font-family: var(--font-heading);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    background-color: var(--color-primary-50);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-full);
+    width: fit-content;
+  }
+
+  .blog-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .blog-card__excerpt {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .blog-card__date {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  /* ========== CTA SECTION ========== */
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+    color: var(--color-text-inverse);
+  }
+
+  .cta-section__title {
+    font-size: var(--text-4xl);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-section__subtitle {
+    font-size: var(--text-lg);
+    opacity: 0.85;
+    max-width: 50ch;
+    margin-inline: auto;
+    margin-bottom: var(--space-5);
+  }
+</style>
