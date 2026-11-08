@@ -39,3 +39,7 @@ No database or environment variables are required. The static production build i
 Published under ET Digital with fresh Git history from the supplied archive. Love Grass Restaurant retains its branding and business content.
 
 Branding, photography, fonts, and third-party media remain subject to their respective rights. No open-source license has been added.
+
+## Earlier implementation
+
+The earlier Next.js website is retained in [`versions/lovegrassv2/main`](https://github.com/Aureum21/love-grass-restaurant/tree/versions/lovegrassv2/main). The default branch contains the Astro website. Original credits and media rights remain applicable.
