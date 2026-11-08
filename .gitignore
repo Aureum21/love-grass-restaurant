@@ -25,8 +25,6 @@ pnpm-debug.log*
 # cache & temporary files
 .*-cache.md
 # These reviewed guidance documents are shared project inputs, not disposable caches.
-!.scroll-guidance-cache.md
-!.web-guidance-cache.md
 *.log
 
 # raw root assets
@@ -36,3 +34,12 @@ image (*).*
 .env*
 !.env.example
 *.xlsx
+
+AGENTS.md
+CLAUDE.md
+AGENT_CONTEXT.md
+AGENT_HANDOVER.md
+.agents/
+.claude/
+.codex/
+.*-guidance-cache.md
